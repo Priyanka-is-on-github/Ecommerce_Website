@@ -10,6 +10,7 @@ const YAML = require('yaml')
 
 const userRouter = require("./routes/userRoutes");
 const productsRouter = require("./routes/productsRouter");
+const getProductsRouter = require("./routes/getProductsRouter");
 
 // const specs=swaggerJsDoc({
 //     definition:{
@@ -34,6 +35,7 @@ app.use(cookieParser());
 app.use("/api/v1/user", userRouter);
 
 app.use("/api/v1/createpayment", productsRouter);
+app.use("/api/v1/products", getProductsRouter);
 
 const PORT = 3000;
 app.listen(PORT, () => {
