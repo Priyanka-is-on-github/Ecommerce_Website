@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Layout from "./Layout";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import formatPrice from "../lib/format";
 import { Button } from "../components/ui/button";
 import Shimmer from "./Shimmer";
@@ -9,28 +9,33 @@ function CheckoutPage() {
   const [products, setProducts] = useState({});
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const createPayment = async () => {
     console.log("first");
     try {
-      const response = await fetch(
-        "http://localhost:3000/api/v1/createpayment/create",
-        {
-          method: "POST",
-          headers: {
-            "Content-type": "application/json",
-          },
-          body: JSON.stringify({
-            id,
-            price: products?.price,
-            title: products?.title,
-          }),
+
+        const response = await fetch('http://localhost:3000/api/v1/createpayment/create',{
+            method:'POST',
+            headers:{
+                "Content-type": "application/json",
+            },
+            body: JSON.stringify({id, price:products?.price, title:products?.title })
+        })
+
+        const jsonResponse = await response.json();
+
+        console.log('jsonr=',jsonResponse)
+
+        if(jsonResponse.status === 'success'){
+          navigate(`/paymentstatus?status=${"success"}`)
+        }else{
+          navigate(`/paymentstatus?status=${"failed"}`)
         }
-      );
 
-      const jsonResponse = await response.json();
+          
 
-      console.log("jsonr=", jsonResponse);
+
     } catch (error) {
       console.log(error);
     }

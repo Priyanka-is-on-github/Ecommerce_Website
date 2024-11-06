@@ -3,11 +3,21 @@ import React from "react";
 import formatPrice from "../../lib/format";
 import { Link } from "react-router-dom";
 
-function ProductCard({ id, title, imageUrl, category, price }) {
+
+type productcardProps={
+  id:number,
+   category:string, 
+  
+    imageUrl:string,
+     price:number, 
+     title:string, 
+    
+}
+function ProductCard({ id, title, imageUrl, category, price }: productcardProps) {
   return (
     <Layout>
       <Link to={`/productdetail/${id}`}>
-        <div className="group  transition overflow-hidden  m-1 p-4 h-full md:w-60 sm:w-80 hover:shadow-lg cursor-pointer border-2 border-slate-200">
+        <div className="group  transition overflow-hidden  m-1 p-4 h-full md:w-60 sm:w-80 hover:shadow-2xl cursor-pointer border-2 border-slate-200">
           <div className="relative    h-80  flex justify-center">
             <img className=" h-[100%] " alt={title} src={imageUrl} />
           </div>
