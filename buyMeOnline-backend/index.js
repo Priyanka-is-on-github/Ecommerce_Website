@@ -12,6 +12,8 @@ const userRouter = require("./routes/userRoutes");
 const productsRouter = require("./routes/productsRouter");
 const getProductsRouter = require("./routes/getProductsRouter");
 
+require("./db_models/db_models")
+
 // const specs=swaggerJsDoc({
 //     definition:{
 //         openapi:""
@@ -37,7 +39,11 @@ app.use("/api/v1/user", userRouter);
 app.use("/api/v1/createpayment", productsRouter);
 app.use("/api/v1/products", getProductsRouter);
 
-const PORT = 3000;
-app.listen(PORT, () => {
-    console.log("Server running on port number", PORT);
-});
+app.get("/health", async (req, res) => {
+    res.send("ok")
+})
+
+// const PORT = 3000;
+// app.listen(PORT, () => {
+//     console.log("Server running on port number", PORT);
+// });

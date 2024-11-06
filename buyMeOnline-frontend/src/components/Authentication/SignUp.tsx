@@ -40,6 +40,7 @@ export default function SignUp() {
   // const { setShowAuthentication } = useContext(showAuthenticationContext);
 
   // setShowAuthentication(false);
+  const SERVER_URL = import.meta.env.VITE_SERVER_URL;
 
   const [isSignedUp, setIsSignedUp] = useState(false);
   const [resMssg, setResMssg] = useState("");
@@ -75,10 +76,7 @@ export default function SignUp() {
       body: JSON.stringify(newUser),
     };
 
-    const response = await fetch(
-      "http://localhost:3000/api/v1/user/signup",
-      options
-    );
+    const response = await fetch(`${SERVER_URL}/api/v1/user/signup`, options);
 
     const responseData = await response.json();
     console.log(responseData);
