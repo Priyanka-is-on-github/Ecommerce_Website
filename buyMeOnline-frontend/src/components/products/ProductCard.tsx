@@ -1,19 +1,23 @@
 import Layout from "../Layout";
-import React from "react";
+
 import formatPrice from "../../lib/format";
 import { Link } from "react-router-dom";
 
+type productcardProps = {
+  id: number;
+  category: string;
 
-type productcardProps={
-  id:number,
-   category:string, 
-  
-    imageUrl:string,
-     price:number, 
-     title:string, 
-    
-}
-function ProductCard({ id, title, imageUrl, category, price }: productcardProps) {
+  imageUrl: string;
+  price: number;
+  title: string;
+};
+function ProductCard({
+  id,
+  title,
+  imageUrl,
+  category,
+  price,
+}: productcardProps) {
   return (
     <Layout>
       <Link to={`/productdetail/${id}`}>

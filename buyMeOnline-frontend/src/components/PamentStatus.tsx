@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/solid"; // For icons
+import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/solid"; // For icons
 
 function PaymentStatus() {
   const isSuccess = status === "success";
@@ -9,7 +9,10 @@ function PaymentStatus() {
   // Optional redirect countdown
   React.useEffect(() => {
     if (redirectCountdown > 0) {
-      const timer = setTimeout(() => setRedirectCountdown(redirectCountdown - 1), 1000);
+      const timer = setTimeout(
+        () => setRedirectCountdown(redirectCountdown - 1),
+        1000
+      );
       return () => clearTimeout(timer);
     }
   }, [redirectCountdown]);
@@ -17,13 +20,15 @@ function PaymentStatus() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
       <div className="max-w-md w-full bg-white shadow-lg rounded-lg p-6 text-center">
-        
         {isSuccess ? (
           <div>
             <CheckCircleIcon className="h-16 w-16 text-green-500 mx-auto mb-4" />
-            <h2 className="text-2xl font-bold text-green-600">Payment Successful!</h2>
+            <h2 className="text-2xl font-bold text-green-600">
+              Payment Successful!
+            </h2>
             <p className="text-gray-600 mt-2">
-              Your transaction was completed successfully. Thank you for your purchase!
+              Your transaction was completed successfully. Thank you for your
+              purchase!
             </p>
           </div>
         ) : (
@@ -39,9 +44,15 @@ function PaymentStatus() {
         <div className="mt-6">
           <button
             className={`px-6 py-2 rounded-lg font-semibold text-white ${
-              isSuccess ? "bg-green-500 hover:bg-green-600" : "bg-red-500 hover:bg-red-600"
+              isSuccess
+                ? "bg-green-500 hover:bg-green-600"
+                : "bg-red-500 hover:bg-red-600"
             }`}
-            onClick={() => (window.location.href = isSuccess ? "/dashboard" : "/retry-payment")}
+            onClick={() =>
+              (window.location.href = isSuccess
+                ? "/dashboard"
+                : "/retry-payment")
+            }
           >
             {isSuccess ? "Go to Dashboard" : "Try Again"}
           </button>

@@ -4,7 +4,7 @@ import Layout from "../Layout";
 import Shimmer from "../Shimmer";
 import formatPrice from "../../lib/format";
 function CartPage() {
-  const [loading, setLoading] = useState(false);
+  const [loading] = useState(false);
   const { cart } = useContext(CartContext);
   console.log(cart);
   const SERVER_URL = import.meta.env.VITE_SERVER_URL;

@@ -1,26 +1,18 @@
-import React, { ReactNode } from 'react'
-import NavigationBar from './navigationbar/NavigationBar'
+import { ReactNode } from "react";
+import NavigationBar from "./navigationbar/NavigationBar";
 
-
-type props={
+type props = {
   children: ReactNode;
-}
+};
 
-function Layout({children}:props) {
-  
-
-
+function Layout({ children }: props) {
   return (
-   
     <>
-   
-  <NavigationBar  />
+      <NavigationBar />
 
-  <main className='flex justify-center'>{children}</main>
+      <main className="flex justify-center">{children}</main>
     </>
-           
-    
-  )
+  );
 }
 
-export default Layout
+export default Layout;

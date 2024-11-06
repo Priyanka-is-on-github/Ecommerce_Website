@@ -2,21 +2,7 @@
 import React, { useContext, useState } from "react";
 
 import { CartContext } from "../utils/contextUtils";
-
-type CartItem = {
-  id: number;
-  category: string;
-  title: string;
-  description: string;
-  price: number;
-  quantity: number;
-  image: string;
-  rating: {
-    rate: number;
-    count: number;
-  };
-};
-
+import { CartItem } from "../types/ContextTypes";
 type Props = {
   children: React.ReactNode;
 };
@@ -25,15 +11,15 @@ export const CartProvider = ({ children }: Props) => {
 
   console.log("cart from cart provider", cart);
 
-  const addToCart = (product: any) => {
+  const addToCart = (product: CartItem) => {
     console.log("add cart to product");
 
     setCart((prevCart) => {
       const productExists = prevCart.find(
-        (item: any) => item.id === product.id
+        (item: CartItem) => item.id === product.id
       );
       if (productExists) {
-        return prevCart.map((item: any) =>
+        return prevCart.map((item: CartItem) =>
           item.id === product.id
             ? { ...item, quantity: item.quantity + 1 }
             : item
@@ -44,7 +30,7 @@ export const CartProvider = ({ children }: Props) => {
     });
   };
 
-  const decrementFromCart = (productId: any) => {
+  const decrementFromCart = (productId: number): void => {
     setCart((prevCart) =>
       prevCart
         .map((item: any) =>
@@ -56,7 +42,7 @@ export const CartProvider = ({ children }: Props) => {
     );
   };
 
-  const removeFromCart = (productId: any) => {
+  const removeFromCart = (productId: number): void => {
     setCart((prevCart) =>
       prevCart.filter((item: any) => item.id !== productId)
     );
