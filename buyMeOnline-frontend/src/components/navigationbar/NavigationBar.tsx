@@ -109,7 +109,7 @@ function NavigationBar() {
           
               <Box sx={{ display: { xs: "none", md: "flex" , width:'100%', justifyContent:'flex-end'} }}>
                 <MenuItem
-                  onClick={() => scrollToSection("features")}
+                  onClick={() => scrollToSection('/')}
                   sx={{ py: "6px", px: "12px"  }}
                 >
                  
@@ -125,7 +125,7 @@ function NavigationBar() {
                 </MenuItem>
                 
                 <MenuItem
-                  onClick={() => scrollToSection("features")}
+                  onClick={() => scrollToSection("products")}
                   sx={{ py: "6px", px: "12px"  }}
                 >
                  
@@ -193,15 +193,25 @@ function NavigationBar() {
                       flexDirection: "column",
                       alignItems: "end",
                       flexGrow: 1,
+
+                      lg:{ 
+                        dislpay:'block'
+                      }
                     }}
                   >
                    
                   </Box>
-                  <MenuItem onClick={() => scrollToSection("features")}>
-                    Home
+                  <MenuItem >
+                  <Link to='/'>
+                  Home
+                  </Link>
+                 
                   </MenuItem>
-                  <MenuItem onClick={() => scrollToSection("testimonials")}>
-                   Products
+                  <MenuItem >
+                  <Link to='/products'>
+                  Products
+                  </Link>
+                   
                   </MenuItem>
                  
                  
@@ -211,7 +221,7 @@ function NavigationBar() {
                       color="primary"
                       variant="contained"
                       component="a"
-                      href="/material-ui/getting-started/templates/sign-up/"
+                      href="/signup"
                       target="_blank"
                       sx={{ width: "100%" }}
                     >
@@ -223,7 +233,7 @@ function NavigationBar() {
                       color="primary"
                       variant="outlined"
                       component="a"
-                      href="/material-ui/getting-started/templates/sign-in/"
+                      href="/signin"
                       target="_blank"
                       sx={{ width: "100%" }}
                     >

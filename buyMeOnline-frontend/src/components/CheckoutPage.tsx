@@ -27,7 +27,7 @@ function CheckoutPage() {
 
         console.log('jsonr=',jsonResponse)
 
-        if(jsonResponse.status === 'success'){
+        if(jsonResponse.status === 'failed'){
           navigate(`/paymentstatus?status=${"success"}`)
         }else{
           navigate(`/paymentstatus?status=${"failed"}`)

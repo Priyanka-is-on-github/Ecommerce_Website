@@ -59,7 +59,7 @@ function Products() {
         );
 
         const responseData = await response.json();
-        console.log(responseData);
+    
         setProducts(responseData);
         setSortProducts(responseData);
         setLoading(false);
