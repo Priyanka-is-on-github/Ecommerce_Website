@@ -1,25 +1,40 @@
-import React, { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import Layout from "../Layout";
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+// import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Button } from "../ui/button";
 import Shimmer from "../Shimmer";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import formatPrice from "../../lib/format";
 import StarRating from "../StarRating";
-import { Category } from "@mui/icons-material";
+import { CartContext } from "../../utils/contextUtils";
 
 export default function Product() {
   const [products, setProducts] = useState({});
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
   const size: string[] = ["S", "M", "L", "XL", "XXL"];
-const navigate = useNavigate()
+  // const navigate = useNavigate();
 
+  const { cart, addToCart, decrementFromCart } = useContext(CartContext);
 
-  const checkOut = ()=>{
-    navigate(`/checkout/${id}`)
-  }
+  const productInCart = cart.find((item) => item.id === parseInt(id));
+
+  const addItemToCart = async () => {
+    // navigate(`/checkout/${id}`);
+
+    const response = await fetch(`https://fakestoreapi.com/products/${id}`);
+    const product = await response.json();
+    console.log("", product);
+    addToCart(product);
+  };
+
+  const decrementItemFromCart = async () => {
+    const response = await fetch(`https://fakestoreapi.com/products/${id}`);
+    const product = await response.json();
+    console.log("", product);
+    decrementFromCart(product.id);
+  };
 
   useEffect(() => {
     (async () => {
@@ -40,7 +55,7 @@ const navigate = useNavigate()
 
   return (
     <Layout>
-     <div className="max-w-[80vw] mt-20 ">
+      <div className="max-w-[80vw] mt-20 ">
         {loading ? (
           Array.from({ length: 1 }).map((_, index) => (
             <Shimmer key={index} width="w-[80vw]" height="h-80" />
@@ -52,7 +67,7 @@ const navigate = useNavigate()
                 {Array.from({ length: 4 }).map((_, index) => (
                   <div className="relative   w-full  h-[15vh]  mb-3 ">
                     <img
-                      
+                      key={products.title + index}
                       alt={products?.title}
                       src={products?.image}
                     />
@@ -61,17 +76,12 @@ const navigate = useNavigate()
               </div>
 
               <div className="relative   w-[30vw]  h-[80%] sm:w-full   ">
-                <img
-                
-                  alt={products?.title}
-                  src={products?.image}
-                />
+                <img alt={products?.title} src={products?.image} />
               </div>
             </div>
 
             <div className="p-3 ">
               <div className="text-2xl pb-4  font-semibold text-left">
-            
                 {products?.title}
               </div>
 
@@ -83,10 +93,9 @@ const navigate = useNavigate()
                 {formatPrice(products?.price)}
               </p>
 
-<div className=" text-left mb-8 font-semibold ">
-<p> {products?.description}</p>
-</div>
-            
+              <div className=" text-left mb-8 font-semibold ">
+                <p> {products?.description}</p>
+              </div>
 
               {products?.category === "men's clothing" ||
               products?.category === "women's clothing" ? (
@@ -103,11 +112,38 @@ const navigate = useNavigate()
                 </div>
               ) : null}
 
-             
+              <p className="my-5 text-left">
+                {" "}
+                <span className="font-bold ">Category:</span>{" "}
+                {products?.category}
+              </p>
 
-            
-              <p className="my-5 text-left">  <span className="font-bold ">Category:</span> {products?.category}</p>
-              <Button className="bg-red-700 hover:bg-red-500 " onClick={checkOut}> Buy now</Button>
+              {productInCart ? (
+                <div className="flex">
+                  <div className="flex items-center gap-4 bg-blue-50 p-2">
+                    <Button
+                      onClick={decrementItemFromCart}
+                      className="bg-blue-400 text-white flex items-center justify-center text-xl"
+                    >
+                      -
+                    </Button>
+                    <span className="font-bold">{productInCart.quantity}</span>
+                    <Button
+                      onClick={addItemToCart}
+                      className="bg-blue-400 text-white flex items-center justify-center text-xl"
+                    >
+                      +
+                    </Button>
+                  </div>
+                </div>
+              ) : (
+                <Button
+                  className="bg-red-700 hover:bg-red-500"
+                  onClick={addItemToCart}
+                >
+                  Add to Cart
+                </Button>
+              )}
             </div>
           </div>
         )}

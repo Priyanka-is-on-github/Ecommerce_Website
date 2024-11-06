@@ -1,4 +1,5 @@
-import { useContext, useEffect, useState } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -15,9 +16,9 @@ import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Alert } from "@mui/material";
 import Cookies from "js-cookie";
-import showAuthenticationContext from "../../utils/contextUtils";
+// import {showAuthenticationContext} from "../../utils/contextUtils";
 
-function Copyright(props) {
+function Copyright(props: any) {
   return (
     <Typography
       variant="body2"
@@ -51,7 +52,7 @@ export default function SignIn() {
 
   const navigate = useNavigate();
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
@@ -84,6 +85,7 @@ export default function SignIn() {
       setTimeout(() => {
         navigate("/");
       }, 3000);
+      sessionStorage.setItem("token", responseData.bearer);
       console.log(responseData.bearer);
       // localStorage.setItem("BearerToken", responseData.bearer);
       Cookies.set("BearerToken", responseData.bearer, {
@@ -108,7 +110,6 @@ export default function SignIn() {
           item
           xs={false}
           sm={4}
-         
           sx={{
             // border: "2px solid blue",
             backgroundImage:

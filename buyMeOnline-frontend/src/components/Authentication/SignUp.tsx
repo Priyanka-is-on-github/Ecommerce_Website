@@ -1,24 +1,22 @@
-import { useContext, useState } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 // import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Link } from "react-router-dom";
 import { Alert } from "@mui/material";
-import showAuthenticationContext from "../../utils/contextUtils";
+// import showAuthenticationContext from "../../utils/contextUtils";
 
-function Copyright(props) {
+function Copyright(props: any) {
   return (
     <Typography
       variant="body2"
@@ -38,7 +36,6 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
-
 export default function SignUp() {
   // const { setShowAuthentication } = useContext(showAuthenticationContext);
 
@@ -52,23 +49,21 @@ export default function SignUp() {
     name: "",
     email: "",
     password: "",
-  
   });
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
 
-    const name = e.target.elements?.Name.value;
-    const email = e.target.email?.value;
-    const password = e.target.password?.value;
- 
-    console.log(name, email, password, ); 
+    const name = e.target?.elements?.Name.value;
+    const email = e.target?.email?.value;
+    const password = e.target?.password?.value;
+
+    console.log(name, email, password);
 
     const newUser = {
       name: name,
       email: email,
       password: password,
-     
     };
 
     const options = {
@@ -91,7 +86,6 @@ export default function SignUp() {
       setShowAlert(true);
       setIsSignedUp(true);
       setUser(responseData.createdUser);
-      
     } else {
       setIsSignedUp(false);
       setShowAlert(true);

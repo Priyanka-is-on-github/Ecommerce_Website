@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 
 import Layout from "../Layout";
@@ -19,7 +20,7 @@ function Products() {
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState("");
 
-  const handleCategoryChange = (e) => {
+  const handleCategoryChange = (e: any) => {
     setSelectedCategory(e.target.value);
     console.log(`Sorting by ${e.target.value}`);
     // Implement your sorting logic here based on selectedCategory
@@ -114,7 +115,7 @@ function Products() {
                 ? Array.from({ length: 16 }).map((_, index) => (
                     <Shimmer key={index} width="w-72" height="h-80" />
                   ))
-                : sortproducts.map((product) => (
+                : sortproducts.map((product: any) => (
                     <ProductCard
                       key={product?.id}
                       id={product?.id}
