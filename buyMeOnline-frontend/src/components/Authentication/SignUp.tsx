@@ -18,7 +18,7 @@ import { Link } from "react-router-dom";
 import { Alert } from "@mui/material";
 import showAuthenticationContext from "../../utils/contextUtils";
 
-function Copyright(props) {
+function Copyright(props: any) {
   return (
     <Typography
       variant="body2"

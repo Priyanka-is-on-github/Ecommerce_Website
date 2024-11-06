@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Layout from "./Layout";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import formatPrice from "../lib/format";
 import { Button } from "../components/ui/button";
 import Shimmer from "./Shimmer";
@@ -9,6 +9,7 @@ function CheckoutPage() {
   const [products, setProducts] = useState({});
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const createPayment = async ()=>{
 
@@ -26,7 +27,14 @@ function CheckoutPage() {
 
         console.log('jsonr=',jsonResponse)
 
-     
+        if(jsonResponse.status === 'success'){
+          navigate(`/paymentstatus?status=${"success"}`)
+        }else{
+          navigate(`/paymentstatus?status=${"failed"}`)
+        }
+
+          
+
     } catch (error) {
         console.log(error)
     }

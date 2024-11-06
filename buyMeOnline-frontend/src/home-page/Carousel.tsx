@@ -6,23 +6,20 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
+ 
 } from "../components/ui/carousel"
 import { Button } from "../components/ui/button"
-import { useNavigate } from "react-router-dom"
+
 
 export function CarouselPlugin() {
-    const navigate = useNavigate();
+    
 
   const plugin = React.useRef(
     
     Autoplay({ delay: 2000, stopOnInteraction: true })
   )
 
-  const products =()=>{
-    navigate('/products')
-  }
+ 
 
   const carouselContent = [
     {
@@ -55,37 +52,45 @@ export function CarouselPlugin() {
   return (
 
     <Carousel
-      plugins={[plugin.current]}
+    plugins={[plugin.current]}
+    className="w-[95vw] min-w-20 h-[70vh] min-h-20"
+    onMouseLeave={plugin.current.reset}
+  >
+    <CarouselContent>
+      {carouselContent.map((Content, index) => (
+        <CarouselItem key={index}>
+          <div className="p-1 overflow-hidden h-[70vh] min-h-20">
+            <Card className="flex h-full bg-gradient-to-b from-pink-300 to-white flex-col md:flex-row">
+              
+          
+              <CardContent className="flex-1 p-4 md:py-14 md:px-16 h-full ">
+                <div className="text-3xl md:text-6xl font-bold pb-2 md:pb-4  text-red-700 text-left">
+                  {Content.title}
+                </div>
+                <div className="text-xs md:text-sm pb-2 md:pb-4 text-left">
+                  Discover the latest trends and exclusive deals, bringing style and quality right to your doorstep — shop effortlessly and elevate your look with us!
+                </div>
+                <Button className="bg-amber-700 hover:bg-amber-500 text-xs md:text-base py-2 px-4 md:py-3 md:px-6">
+                  {Content.button}
+                </Button>
+              </CardContent>
+              
       
-      className="w-[95vw] min-w-20  h-[70vh] min-h-20  "
-     
-      onMouseLeave={plugin.current.reset}
-     
-    >
-      <CarouselContent>
-        {carouselContent.map(( Content, index) => (
-          <CarouselItem key={index}>
-            <div className="p-1  overflow-hidden h-[70vh] min-h-20">
-              <Card className=" flex  h-[100%] bg-gradient-to-b from-pink-300  to-white">
-
-                <CardContent className="flex-1 aspect-square  py-14 px-16  h-[100%] ">
-                <div  className="text-6xl font-bold pb-4 text-red-700 text-left">{Content.title}</div>
-    <div className="text-sm pb-4 text-left"> "Discover the latest trends and exclusive deals, bringing style and quality right to your doorstep-shop effortlessly and elevate your look with us!"</div>
-    <Button className="bg-amber-700 flex justify-start hover:bg-amber-500" onClick={products}> {Content.button}</Button>
-                </CardContent>
-
-                <CardContent className=" flex-1 aspect-square  p-6 h-[100%]">
-               <img src={Content.image} alt={Content.title} />
-                
-                </CardContent>
-
-              </Card>
-            </div>
-          </CarouselItem>
-        ))}
-      </CarouselContent>
-     
-    </Carousel>
+              <CardContent className="flex-1 p-4 h-full">
+                <img
+                  src={Content.image}
+                  alt={Content.title}
+                  className="w-full h-auto max-h-[300px] md:max-h-[500px] object-cover rounded-md"
+                />
+              </CardContent>
+  
+            </Card>
+          </div>
+        </CarouselItem>
+      ))}
+    </CarouselContent>
+  </Carousel>
+  
   )
 }
 export default CarouselPlugin
