@@ -45,16 +45,18 @@ function Products() {
       product?.category?.toLowerCase()?.includes(selectedCategory?.toLowerCase())
     );
 
-  console.log('filterd=', filterData)
+    console.log("filterd=", filterData);
     return filterData;
   }
-  
+
   useEffect(() => {
     (async () => {
       setLoading(true);
 
       try {
-        const response = await fetch("https://fakestoreapi.com/products");
+        const response = await fetch(
+          "http://localhost:3000/api/v1/products/getallproducts"
+        );
 
         const responseData = await response.json();
         console.log(responseData);
