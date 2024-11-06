@@ -43,7 +43,7 @@ app.get("/health", async (req, res) => {
     res.send("ok")
 })
 
-const PORT = 3000;
-app.listen(PORT, () => {
-    console.log("Server running on port number", PORT);
-});
+// const PORT = 3000;
+// app.listen(PORT, () => {
+//     console.log("Server running on port number", PORT);
+// });
