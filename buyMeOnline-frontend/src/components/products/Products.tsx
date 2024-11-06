@@ -26,24 +26,25 @@ function Products() {
   };
 
   function filterProduct(selectedCategory, products) {
-
- console.log('c=', products[0].category === selectedCategory)
+    console.log("c=", products[0].category === selectedCategory);
     const filterData = products.filter((product) =>
-  
-
-      product?.category?.toLowerCase()?.includes(selectedCategory?.toLowerCase())
+      product?.category
+        ?.toLowerCase()
+        ?.includes(selectedCategory?.toLowerCase())
     );
 
-  console.log('filterd=', filterData)
+    console.log("filterd=", filterData);
     return filterData;
   }
-  
+
   useEffect(() => {
     (async () => {
       setLoading(true);
 
       try {
-        const response = await fetch("https://fakestoreapi.com/products");
+        const response = await fetch(
+          "http://localhost:3000/api/v1/products/getallproducts"
+        );
 
         const responseData = await response.json();
         console.log(responseData);
@@ -65,45 +66,48 @@ function Products() {
                 FLAT 50% OFF
               </div>
               <div className="text-xl sm:text-xl pb-4 text-left">
-              
                 <span className="text-violet-900 ">12</span> Hours{" "}
                 <span className="text-violet-900 ">20</span> Mins
               </div>
               <Button className="bg-blue-800 flex justify-start hover:bg-blue-500">
-             
                 Explore now
               </Button>
             </div>
 
-            <div >
-              <img src='./assets/boygirl.png' alt="Boy and Girl in Western Outfits" className="w-72 h-90" />
+            <div>
+              <img
+                src="./assets/boygirl.png"
+                alt="Boy and Girl in Western Outfits"
+                className="w-72 h-90"
+              />
             </div>
           </div>
 
-<div className="flex justify-end mb-20">
+          <div className="flex justify-end mb-20">
+            <Button
+              className="bg-gray-300 text-black hover:bg-slate-400"
+              onClick={() => {
+                const FilterData = filterProduct(selectedCategory, products);
 
-<Button className="bg-gray-300 text-black hover:bg-slate-400" onClick={() => {
-
-        const FilterData = filterProduct(selectedCategory, products);
-
-        setSortProducts(FilterData);
-      }} >
-        Sort by
-      </Button>
-      <select
-        name="category"
-        onChange={handleCategoryChange}
-        className="bg-gray-100 border border-gray-300 rounded-md p-2 text-black hover:bg-gray-200 outline-none border-none"
-        value={selectedCategory}
-      >
-        <option value="">Select a  category</option>
-        {categories.map((category) => (
-          <option key={category.value} value={category.value}>
-            {category.name}
-          </option>
-        ))}
-      </select>
-</div>
+                setSortProducts(FilterData);
+              }}
+            >
+              Sort by
+            </Button>
+            <select
+              name="category"
+              onChange={handleCategoryChange}
+              className="bg-gray-100 border border-gray-300 rounded-md p-2 text-black hover:bg-gray-200 outline-none border-none"
+              value={selectedCategory}
+            >
+              <option value="">Select a category</option>
+              {categories.map((category) => (
+                <option key={category.value} value={category.value}>
+                  {category.name}
+                </option>
+              ))}
+            </select>
+          </div>
           <div>
             <div className="flex flex-wrap gap-2  justify-center ">
               {loading
