@@ -41,7 +41,7 @@ const defaultTheme = createTheme();
 
 export default function SignIn() {
   // const { setShowAuthentication } = useContext(showAuthenticationContext);
-
+  const SERVER_URL = import.meta.env.VITE_SERVER_URL;
   // useEffect(() => {
   //   setShowAuthentication(false);
   // });
@@ -70,10 +70,7 @@ export default function SignIn() {
       },
       body: JSON.stringify(signedInUser),
     };
-    const response = await fetch(
-      "http://localhost:3000/api/v1/user/signin",
-      options
-    );
+    const response = await fetch(`${SERVER_URL}/api/v1/user/signin`, options);
     const responseData = await response.json();
     console.log(responseData);
     if (responseData.status === "err") {

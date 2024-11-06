@@ -37,6 +37,10 @@ app.use("/api/v1/user", userRouter);
 app.use("/api/v1/createpayment", productsRouter);
 app.use("/api/v1/products", getProductsRouter);
 
+app.get("/health", async (req, res) => {
+    res.send("ok")
+})
+
 const PORT = 3000;
 app.listen(PORT, () => {
     console.log("Server running on port number", PORT);
