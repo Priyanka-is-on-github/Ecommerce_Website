@@ -12,6 +12,8 @@ const userRouter = require("./routes/userRoutes");
 const productsRouter = require("./routes/productsRouter");
 const getProductsRouter = require("./routes/getProductsRouter");
 
+require("./db_models/db_models")
+
 // const specs=swaggerJsDoc({
 //     definition:{
 //         openapi:""
