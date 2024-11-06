@@ -1,4 +1,4 @@
-function getCookie(cname) {
+function getCookie(cname: string) {
   const name = cname + "=";
   const ca = document.cookie.split(";");
   for (let i = 0; i < ca.length; i++) {

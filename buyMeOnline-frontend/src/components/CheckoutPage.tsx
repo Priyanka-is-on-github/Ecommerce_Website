@@ -4,9 +4,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import formatPrice from "../lib/format";
 import { Button } from "../components/ui/button";
 import Shimmer from "./Shimmer";
+import { ProductType } from "../types/ContextTypes";
 
 function CheckoutPage() {
-  const [products, setProducts] = useState({});
+  const [products, setProducts] = useState<ProductType | null>(null);
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
   const navigate = useNavigate();
@@ -14,6 +15,7 @@ function CheckoutPage() {
   const createPayment = async () => {
     console.log("first");
     try {
+
 
         const response = await fetch('http://localhost:3000/api/v1/createpayment/create',{
             method:'POST',
@@ -31,11 +33,19 @@ function CheckoutPage() {
           navigate(`/paymentstatus?status=${"success"}`)
         }else{
           navigate(`/paymentstatus?status=${"failed"}`)
+
         }
+      );
 
-          
+      const jsonResponse = await response.json();
 
+      console.log("jsonr=", jsonResponse);
 
+      if (jsonResponse.status === "success") {
+        navigate(`/paymentstatus?status=${"success"}`);
+      } else {
+        navigate(`/paymentstatus?status=${"failed"}`);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -86,13 +96,13 @@ function CheckoutPage() {
               <p>{products?.title}</p>
 
               <p className="text-md md:text-sm font-medium text-slate-800 ">
-                {formatPrice(products?.price)}
+                {formatPrice(products?.price ? products?.price : 0)}
               </p>
 
               <div>1</div>
 
               <p className="text-md md:text-sm font-medium text-slate-800 ">
-                {formatPrice(products?.price)}
+                {formatPrice(products?.price ? products?.price : 0)}
               </p>
             </div>
 

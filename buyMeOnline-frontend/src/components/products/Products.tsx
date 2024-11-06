@@ -35,9 +35,12 @@ function Products() {
   };
 
   function filterProduct(selectedCategory: string, products: productProps[]) {
-    const filterData = products.filter((product) =>
-      product.category.toLowerCase().includes(selectedCategory.toLowerCase())
-    );
+    const filterData = products.filter((product) => {
+      console.log("from filter", product);
+      return product.category
+        .toLowerCase()
+        .includes(selectedCategory.toLowerCase());
+    });
     console.log("filtered=", filterData);
     return filterData;
   }
@@ -50,7 +53,7 @@ function Products() {
           "http://localhost:3000/api/v1/products/getallproducts"
         );
         const responseData = await response.json();
-    
+
         setProducts(responseData);
         setSortProducts(responseData);
         setLoading(false);
@@ -116,7 +119,11 @@ function Products() {
             <div className="flex flex-wrap gap-4 md:gap-6 justify-center">
               {loading
                 ? Array.from({ length: 16 }).map((_, index) => (
-                    <Shimmer key={index} width="w-60 sm:w-72" height="h-64 sm:h-80" />
+                    <Shimmer
+                      key={index}
+                      width="w-60 sm:w-72"
+                      height="h-64 sm:h-80"
+                    />
                   ))
                 : sortproducts.map((product) => (
                     <ProductCard

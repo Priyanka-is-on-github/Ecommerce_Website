@@ -1,4 +1,6 @@
+
 import  {  useEffect, useState } from "react";
+
 import Layout from "../components/Layout";
 import { CarouselPlugin } from "./Carousel";
 import CategoriesCard from "./CategoriesCard";
@@ -121,7 +123,7 @@ function Home() {
               <span className="absolute left-1/2 w-20 md:w-32 h-[2px] md:h-[3px] bg-red-800 transform -translate-x-1/2 -bottom-0.5"></span>
             </h2>
 
-            <div className="  grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4  mt-10 sm:pl-36  ">
+            <div className=" w-full grid grid-cols-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4  mt-10 sm:pl-36  ">
               {products.map((product) => (
                 <JwelleryCard
                   key={product?.id}
@@ -224,6 +226,7 @@ function Home() {
                 <div className="mt-10 md:mt-40 mb-4 md:mb-8 font-semibold text-xl md:text-3xl">
                   Sitemark
                 </div>
+
 
                 <div className="flex flex-wrap justify-center font-semibold mb-8 md:mb-16 cursor-pointer">
                   {["Company", "Products", "Office", "About", "Contact"].map(
