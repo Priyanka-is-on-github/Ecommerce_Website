@@ -53,7 +53,7 @@ function Products() {
           "http://localhost:3000/api/v1/products/getallproducts"
         );
         const responseData = await response.json();
-        console.log("products fetched", responseData);
+
         setProducts(responseData);
         setSortProducts(responseData);
         setLoading(false);

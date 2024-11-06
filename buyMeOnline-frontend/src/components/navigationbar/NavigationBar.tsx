@@ -115,8 +115,8 @@ function NavigationBar() {
                 }}
               >
                 <MenuItem
-                  onClick={() => scrollToSection("features")}
-                  sx={{ py: "6px", px: "12px" }}
+                  onClick={() => scrollToSection('/')}
+                  sx={{ py: "6px", px: "12px"  }}
                 >
                   <Typography
                     variant="body2"
@@ -133,8 +133,8 @@ function NavigationBar() {
                 </MenuItem>
 
                 <MenuItem
-                  onClick={() => scrollToSection("features")}
-                  sx={{ py: "6px", px: "12px" }}
+                  onClick={() => scrollToSection("products")}
+                  sx={{ py: "6px", px: "12px"  }}
                 >
                   <Typography
                     variant="body2"
@@ -218,13 +218,25 @@ function NavigationBar() {
                       flexDirection: "column",
                       alignItems: "end",
                       flexGrow: 1,
+
+                      lg:{ 
+                        dislpay:'block'
+                      }
                     }}
-                  ></Box>
-                  <MenuItem onClick={() => scrollToSection("features")}>
-                    Home
+                  >
+                   
+                  </Box>
+                  <MenuItem >
+                  <Link to='/'>
+                  Home
+                  </Link>
+                 
                   </MenuItem>
-                  <MenuItem onClick={() => scrollToSection("testimonials")}>
-                    Products
+                  <MenuItem >
+                  <Link to='/products'>
+                  Products
+                  </Link>
+                   
                   </MenuItem>
 
                   <Divider />
@@ -233,7 +245,7 @@ function NavigationBar() {
                       color="primary"
                       variant="contained"
                       component="a"
-                      href="/material-ui/getting-started/templates/sign-up/"
+                      href="/signup"
                       target="_blank"
                       sx={{ width: "100%" }}
                     >
@@ -245,7 +257,7 @@ function NavigationBar() {
                       color="primary"
                       variant="outlined"
                       component="a"
-                      href="/material-ui/getting-started/templates/sign-in/"
+                      href="/signin"
                       target="_blank"
                       sx={{ width: "100%" }}
                     >

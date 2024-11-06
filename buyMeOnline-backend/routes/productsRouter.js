@@ -49,8 +49,7 @@ router.post("/create", async (req, res) => {
     if(paymentSuccessfull === false){
 
         return res.status(200).json({
-            status: "failure"
-           
+            status: "failed"
           });
     }
 
