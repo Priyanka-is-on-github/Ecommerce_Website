@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Layout from "./Layout";
 import { useParams } from "react-router-dom";
 import formatPrice from "../lib/format";
@@ -10,28 +10,31 @@ function CheckoutPage() {
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
 
-  const createPayment = async ()=>{
-
-    console.log('first')
+  const createPayment = async () => {
+    console.log("first");
     try {
-        const response = await fetch('http://localhost:3000/api/v1/createpayment/create',{
-            method:'POST',
-            headers:{
-                "Content-type": "application/json",
-            },
-            body: JSON.stringify({id, price:products?.price, title:products?.title })
-        })
+      const response = await fetch(
+        "http://localhost:3000/api/v1/createpayment/create",
+        {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({
+            id,
+            price: products?.price,
+            title: products?.title,
+          }),
+        }
+      );
 
-        const jsonResponse = await response.json();
+      const jsonResponse = await response.json();
 
-        console.log('jsonr=',jsonResponse)
-
-     
+      console.log("jsonr=", jsonResponse);
     } catch (error) {
-        console.log(error)
+      console.log(error);
     }
-  }
-
+  };
 
   useEffect(() => {
     (async () => {
@@ -88,8 +91,10 @@ function CheckoutPage() {
               </p>
             </div>
 
-            <Button className=" bg-orange-700 my-8 ml-20 hover:bg-orange-500" onClick={()=>createPayment()}>
-            
+            <Button
+              className=" bg-orange-700 my-8 ml-20 hover:bg-orange-500"
+              onClick={() => createPayment()}
+            >
               Proceed to checkout
             </Button>
           </>
