@@ -1,5 +1,5 @@
-
-import  {  useEffect, useState } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useEffect, useState } from "react";
 
 import Layout from "../components/Layout";
 import { CarouselPlugin } from "./Carousel";
@@ -182,7 +182,7 @@ function Home() {
                         height="h-64 sm:h-80"
                       />
                     ))
-                  : newCollectionProducts.map((newcollectionProduct) => (
+                  : newCollectionProducts.map((newcollectionProduct: any) => (
                       <NewCollectionCard
                         key={newcollectionProduct?.goods_id}
                         title={newcollectionProduct?.goods_name}
@@ -226,7 +226,6 @@ function Home() {
                 <div className="mt-10 md:mt-40 mb-4 md:mb-8 font-semibold text-xl md:text-3xl">
                   Sitemark
                 </div>
-
 
                 <div className="flex flex-wrap justify-center font-semibold mb-8 md:mb-16 cursor-pointer">
                   {["Company", "Products", "Office", "About", "Contact"].map(

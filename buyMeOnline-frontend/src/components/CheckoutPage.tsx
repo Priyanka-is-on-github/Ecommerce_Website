@@ -15,31 +15,31 @@ function CheckoutPage() {
   const createPayment = async () => {
     console.log("first");
     try {
-
-
-        const response = await fetch('http://localhost:3000/api/v1/createpayment/create',{
-            method:'POST',
-            headers:{
-                "Content-type": "application/json",
-            },
-            body: JSON.stringify({id, price:products?.price, title:products?.title })
-        })
-
-        const jsonResponse = await response.json();
-
-        console.log('jsonr=',jsonResponse)
-
-        if(jsonResponse.status === 'failed'){
-          navigate(`/paymentstatus?status=${"success"}`)
-        }else{
-          navigate(`/paymentstatus?status=${"failed"}`)
-
+      const response = await fetch(
+        "http://localhost:3000/api/v1/createpayment/create",
+        {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({
+            id,
+            price: products?.price,
+            title: products?.title,
+          }),
         }
       );
 
       const jsonResponse = await response.json();
 
       console.log("jsonr=", jsonResponse);
+
+      if (jsonResponse.status === "failed") {
+        navigate(`/paymentstatus?status=${"success"}`);
+      } else {
+        navigate(`/paymentstatus?status=${"failed"}`);
+      }
+      // );
 
       if (jsonResponse.status === "success") {
         navigate(`/paymentstatus?status=${"success"}`);
