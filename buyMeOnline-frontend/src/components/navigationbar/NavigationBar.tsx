@@ -1,5 +1,5 @@
-import { useState, useContext } from "react";
-import { PaletteMode } from "@mui/material";
+import { useContext, useState } from "react";
+// import { PaletteMode } from "@mui/material";
 import Box from "@mui/material/Box";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -10,9 +10,11 @@ import Typography from "@mui/material/Typography";
 import MenuItem from "@mui/material/MenuItem";
 import Drawer from "@mui/material/Drawer";
 import MenuIcon from "@mui/icons-material/Menu";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 import { Link, useNavigate } from "react-router-dom";
-import showAuthenticationContext from "../../utils/contextUtils";
+import { CartContext } from "../../utils/contextUtils";
+// import showAuthenticationContext from "../../utils/contextUtils";
 
 const logoStyle = {
   width: "140px",
@@ -20,13 +22,13 @@ const logoStyle = {
   cursor: "pointer",
 };
 
-
-
 function NavigationBar() {
   // const { showAuthentication, setShowAuthenticationContext } = useContext(
   //   showAuthenticationContext
   // );
   const navigate = useNavigate();
+  const { cart } = useContext(CartContext);
+  console.log("cart from navbar=", cart, cart.length);
 
   const handleHomeClick = () => {
     navigate("/");
@@ -61,8 +63,6 @@ function NavigationBar() {
           bgcolor: "transparent",
           backgroundImage: "none",
           mt: 2,
-          
-          
         }}
       >
         <Container maxWidth="lg">
@@ -75,11 +75,10 @@ function NavigationBar() {
               flexShrink: 0,
               borderRadius: "999px",
               bgcolor: "white",
-             
+
               maxHeight: 40,
               border: "1px solid",
-             
-          
+
               borderColor: "divider",
               boxShadow:
                 theme.palette.mode === "light"
@@ -94,10 +93,8 @@ function NavigationBar() {
                 alignItems: "center",
                 ml: "-18px",
                 px: 0,
-           
               }}
             >
-           
               <img
                 onClick={handleHomeClick}
                 src={
@@ -106,15 +103,26 @@ function NavigationBar() {
                 style={logoStyle}
                 alt="logo of sitemark"
               />
-          
-              <Box sx={{ display: { xs: "none", md: "flex" , width:'100%', justifyContent:'flex-end'} }}>
+
+              <Box
+                sx={{
+                  display: {
+                    xs: "none",
+                    md: "flex",
+                    width: "100%",
+                    justifyContent: "flex-end",
+                  },
+                }}
+              >
                 <MenuItem
                   onClick={() => scrollToSection('/')}
                   sx={{ py: "6px", px: "12px"  }}
                 >
-                 
-
-                 <Typography variant="body2" color="text.primary" sx={{fontWeight:'bold'}} >
+                  <Typography
+                    variant="body2"
+                    color="text.primary"
+                    sx={{ fontWeight: "bold" }}
+                  >
                     <Link
                       to="/"
                       style={{ textDecoration: "none", color: "inherit" }}
@@ -123,14 +131,16 @@ function NavigationBar() {
                     </Link>
                   </Typography>
                 </MenuItem>
-                
+
                 <MenuItem
                   onClick={() => scrollToSection("products")}
                   sx={{ py: "6px", px: "12px"  }}
                 >
-                 
-
-                  <Typography variant="body2" color="text.primary" sx={{fontWeight:'bold'}}>
+                  <Typography
+                    variant="body2"
+                    color="text.primary"
+                    sx={{ fontWeight: "bold" }}
+                  >
                     <Link
                       to="/products"
                       style={{ textDecoration: "none", color: "inherit" }}
@@ -139,7 +149,24 @@ function NavigationBar() {
                     </Link>
                   </Typography>
                 </MenuItem>
-               
+
+                <MenuItem
+                  onClick={() => scrollToSection("features")}
+                  sx={{ py: "6px", px: "12px" }}
+                >
+                  <Link to="/cart" className="flex relative">
+                    <ShoppingCartIcon
+                      color="primary"
+                      sx={{ zIndex: "23", bgColor: "white" }}
+                    />
+                    <span
+                      className=" text-red-600 px-1 py-0 absolute top-[-11px] right-[-5px] rounded-full bg-red-100 text-xs"
+                      style={{ zIndex: "2" }}
+                    >
+                      {cart.length ? cart.length : 0}
+                    </span>
+                  </Link>
+                </MenuItem>
               </Box>
             </Box>
             <Box
@@ -147,10 +174,8 @@ function NavigationBar() {
                 display: { xs: "none", md: "flex" },
                 gap: 0.5,
                 alignItems: "center",
-               
               }}
             >
-              
               <Button color="primary" variant="text" size="small">
                 <Link
                   to="/signin"
@@ -213,8 +238,7 @@ function NavigationBar() {
                   </Link>
                    
                   </MenuItem>
-                 
-                 
+
                   <Divider />
                   <MenuItem>
                     <Button

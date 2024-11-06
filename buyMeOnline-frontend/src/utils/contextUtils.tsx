@@ -1,4 +1,6 @@
 import { createContext } from "react";
-const showAuthenticationContext = createContext({});
+export const showAuthenticationContext = createContext({});
 
-export default showAuthenticationContext;
+export const CartContext = createContext();
+
+// export default showAuthenticationContext;

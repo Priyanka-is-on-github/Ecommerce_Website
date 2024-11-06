@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Layout from "./Layout";
 import { useNavigate, useParams } from "react-router-dom";
 import formatPrice from "../lib/format";
@@ -11,10 +11,10 @@ function CheckoutPage() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const createPayment = async ()=>{
-
-    console.log('first')
+  const createPayment = async () => {
+    console.log("first");
     try {
+
         const response = await fetch('http://localhost:3000/api/v1/createpayment/create',{
             method:'POST',
             headers:{
@@ -35,11 +35,11 @@ function CheckoutPage() {
 
           
 
-    } catch (error) {
-        console.log(error)
-    }
-  }
 
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     (async () => {
@@ -96,8 +96,10 @@ function CheckoutPage() {
               </p>
             </div>
 
-            <Button className=" bg-orange-700 my-8 ml-20 hover:bg-orange-500" onClick={()=>createPayment()}>
-            
+            <Button
+              className=" bg-orange-700 my-8 ml-20 hover:bg-orange-500"
+              onClick={() => createPayment()}
+            >
               Proceed to checkout
             </Button>
           </>
