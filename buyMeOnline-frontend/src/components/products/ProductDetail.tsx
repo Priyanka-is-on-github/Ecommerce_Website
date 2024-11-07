@@ -73,7 +73,7 @@ export default function Product() {
                   </div>
                 ))}
               </div>
-              <div className="relative w-full h-64 md:w-[30vw] sm:h-80 border-2 border-red-700 overflow-hidden">
+              <div className="relative w-full h-64 md:w-[30vw] sm:h-80 flex items-center justify-between overflow-hidden">
                 <img
                   alt={products?.title}
                   src={products?.image}
