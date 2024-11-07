@@ -77,12 +77,12 @@ export default function SignIn() {
       setResMssg(responseData.message);
       setIsSignedIn(false);
       setShowAlert(true);
+      sessionStorage.setItem("token", responseData.bearer);
     } else {
       setIsSignedIn(true);
       setTimeout(() => {
         navigate("/");
       }, 3000);
-      sessionStorage.setItem("token", responseData.bearer);
       console.log(responseData.bearer);
       // localStorage.setItem("BearerToken", responseData.bearer);
       Cookies.set("BearerToken", responseData.bearer, {
