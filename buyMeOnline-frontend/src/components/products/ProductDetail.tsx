@@ -58,7 +58,7 @@ export default function Product() {
           ))
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 mb-4 rounded-none shadow-none overflow-hidden gap-4 md:gap-6">
-            <div className="flex flex-col md:flex-row justify-center gap-4 border-2 border-red-700">
+            <div className="flex flex-col md:flex-row justify-center gap-4">
               <div className="w-full md:w-24 flex md:flex-col gap-2 md:gap-4">
                 {Array.from({ length: 4 }).map((_, index) => (
                   <div
@@ -77,7 +77,7 @@ export default function Product() {
                 <img
                   alt={products?.title}
                   src={products?.image}
-                  className="w-full h-full object-cover border-2 border-green-700"
+                  className="w-full h-full object-cover"
                 />
               </div>
             </div>
