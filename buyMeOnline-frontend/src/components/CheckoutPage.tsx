@@ -12,11 +12,13 @@ function CheckoutPage() {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  const SERVER_URL=import.meta.env.VITE_SERVER_URL;
+
   const createPayment = async () => {
     console.log("first");
     try {
       const response = await fetch(
-        "http://localhost:3000/api/v1/createpayment/create",
+        `${SERVER_URL}/api/v1/createpayment/create`,
         {
           method: "POST",
           headers: {
