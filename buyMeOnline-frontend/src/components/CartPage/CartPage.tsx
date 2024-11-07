@@ -9,6 +9,8 @@ function CartPage() {
   console.log(cart);
   const SERVER_URL = import.meta.env.VITE_SERVER_URL;
 
+  const navigate=useNavigate();
+
   const createPayment = async () => {
     if (sessionStorage.getItem("token") === null) {
       return;
@@ -35,8 +37,8 @@ function CartPage() {
       );
 
       const jsonResponse = await response.json();
-
       console.log("jsonr=", jsonResponse);
+navigate(`/paymentstatus?status=${jsonResponse.status}`);
     } catch (error) {
       console.log(error);
     }
