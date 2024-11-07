@@ -68,12 +68,12 @@ export default function Product() {
                     <img
                       alt={products?.title}
                       src={products?.image}
-                      className="w-full h-full object-cover border-2 border-red-300"
+                      className="w-full h-full object-cover"
                     />
                   </div>
                 ))}
               </div>
-              <div className="relative w-full h-64 md:w-[30vw] sm:h-80 flex items-center justify-between overflow-hidden">
+              <div className="relative w-full h-full md:w-[30vw] sm:h-80 flex items-center justify-between overflow-hidden">
                 <img
                   alt={products?.title}
                   src={products?.image}
