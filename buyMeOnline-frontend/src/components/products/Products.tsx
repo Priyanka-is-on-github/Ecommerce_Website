@@ -29,6 +29,8 @@ function Products() {
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState("");
 
+  const SERVER_URL=import.meta.env.VITE_SERVER_URL;
+
   const handleCategoryChange = (e: any) => {
     setSelectedCategory(e.target.value);
     console.log(`Sorting by ${e.target.value}`);
@@ -50,7 +52,7 @@ function Products() {
       setLoading(true);
       try {
         const response = await fetch(
-          "http://localhost:3000/api/v1/products/getallproducts"
+          `${SERVER_URL}/api/v1/products/getallproducts`
         );
         const responseData = await response.json();
 
