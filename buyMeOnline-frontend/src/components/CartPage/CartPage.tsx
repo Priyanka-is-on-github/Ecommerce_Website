@@ -3,6 +3,7 @@ import { CartContext } from "../../utils/contextUtils";
 import Layout from "../Layout";
 import Shimmer from "../Shimmer";
 import formatPrice from "../../lib/format";
+import {useNavigate} from "react-router-dom"
 function CartPage() {
   const [loading] = useState(false);
   const { cart } = useContext(CartContext);
